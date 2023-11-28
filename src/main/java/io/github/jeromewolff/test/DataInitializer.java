@@ -1,6 +1,7 @@
 package io.github.jeromewolff.test;
 
 import io.github.jeromewolff.test.configuration.ApplicationConfiguration;
+import io.github.jeromewolff.test.configuration.ApplicationProperties;
 import io.github.jeromewolff.test.model.Message;
 import io.github.jeromewolff.test.service.MessageService;
 import io.github.jeromewolff.test.util.RandomGenerator;
@@ -19,17 +20,17 @@ import java.util.stream.IntStream;
  */
 @Component
 public final class DataInitializer implements CommandLineRunner {
-  private final ApplicationConfiguration applicationConfiguration;
+  private final ApplicationProperties applicationProperties;
   private final MessageService messageService;
   private final RandomGenerator randomGenerator;
 
   @Autowired
   private DataInitializer(
-    ApplicationConfiguration applicationConfiguration,
+    ApplicationProperties applicationProperties,
     MessageService messageRepository,
     RandomGenerator randomGenerator
   ) {
-    this.applicationConfiguration = applicationConfiguration;
+    this.applicationProperties = applicationProperties;
     this.messageService = messageRepository;
     this.randomGenerator = randomGenerator;
   }
@@ -42,7 +43,7 @@ public final class DataInitializer implements CommandLineRunner {
    */
   @Override
   public void run(String... args) {
-    if (!this.applicationConfiguration.isMessageGenerationEnabled()) {
+    if (!this.applicationProperties.isMessageGenerationEnabled()) {
       return;
     }
     this.generateRandomMessages();
@@ -65,7 +66,7 @@ public final class DataInitializer implements CommandLineRunner {
   private Consumer<List<Message>> generateMessagesIfAbsent() {
     return messages -> {
       if (messages == null || messages.isEmpty()) {
-        this.generateRandomMessages(this.applicationConfiguration.messagesToGenerateCount());
+        this.generateRandomMessages(this.applicationProperties.messagesToGenerateCount());
       }
     };
   }

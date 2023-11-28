@@ -1,8 +1,11 @@
 package io.github.jeromewolff.test;
 
+import io.github.jeromewolff.test.configuration.ApplicationProperties;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -14,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAsync
 @EnableJpaRepositories
+@EnableConfigurationProperties(ApplicationProperties.class)
 @SpringBootApplication
 public class Application {
   /**
