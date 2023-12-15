@@ -1,7 +1,14 @@
+![](https://github.com/JeromeWolff/spring-boot-developer-test/workflows/Maven%20Java%20CI/badge.svg)
+
 # Spring Boot RESTful API Example
 
 This is a simple Spring Boot application that provides a RESTful API to manage
 messages. The API allows you to retrieve all messages stored in a database.
+
+## Contributors
+
+<!-- readme: collaborators,contributors -start -->
+<!-- readme: collaborators,contributors -end -->
 
 ## Getting Started
 
